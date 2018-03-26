@@ -12,6 +12,15 @@ Add the lazyImages script to your page
 <script src="path/to/lazyImages.min.js" type="text/javascript"></script>
 ```
 
+Init the lazyImages class and run the loadImages function
+
+```javascript
+(function() {
+    var lazy = new lazyImages();
+    lazy.loadImages();
+})
+```
+
 Add the lazy and src/srcset data attributes to images, and add the same image in a noscript tag for users without javascript
 
 ```html
