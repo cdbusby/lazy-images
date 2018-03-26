@@ -1,0 +1,37 @@
+{
+  "name": "lazy-images",
+  "version": "0.1.0",
+  "description": "Super simple vanilla JS lazy loading of images, including srcset",
+  "main": "./src/lazy-images.js",
+  "scripts": {
+    "build": "webpack",
+    "watch": "webpack --watch",
+    "dist": "webpack --config webpack.dist.config.js",
+    "lint": "eslint --config .eslintrc.json \"src/**/*.js\"",
+    "lintfix": "eslint --config .eslintrc.json \"src/**/*.js\" --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cdbusby/lazy-images.git"
+  },
+  "keywords": [
+    "js",
+    "lazy",
+    "loading",
+    "images"
+  ],
+  "author": "Colin Busby",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cdbusby/lazy-images/issues"
+  },
+  "homepage": "https://github.com/cdbusby/lazy-images#readme",
+  "dependencies": {
+    "clean-webpack-plugin": "^0.1.19",
+    "uglifyjs-webpack-plugin": "^1.2.4",
+    "webpack": "^4.2.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^2.0.13"
+  }
+}

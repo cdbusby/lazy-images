@@ -1,0 +1,7 @@
+## - Build Files - ##
+node_modules
+build
+
+## - Editor - ##
+.vscode
+.idea
