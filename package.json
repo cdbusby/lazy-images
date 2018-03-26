@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack",
     "watch": "webpack --watch",
-    "dist": "webpack --config webpack.dist.config.js",
+    "prod": "webpack --config webpack.prod.js",
     "lint": "eslint --config .eslintrc.json \"src/**/*.js\"",
     "lintfix": "eslint --config .eslintrc.json \"src/**/*.js\" --fix"
   },
