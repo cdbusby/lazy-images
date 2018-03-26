@@ -16,8 +16,6 @@ module.exports = {
     output: {
         path: `${__dirname}/build/`,
         filename: '[name].js',
-        library: 'LazyImages',
-        libraryTarget: 'umd',
         sourceMapFilename: '[file].map',
         devtoolModuleFilenameTemplate: 'webpack:///[resource-path]', // string
         devtoolFallbackModuleFilenameTemplate: 'webpack:///[resource-path]?[hash]', // string

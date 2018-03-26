@@ -1,14 +1,4 @@
-(function webpackUniversalModuleDefinition(root, factory) {
-	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory();
-	else if(typeof define === 'function' && define.amd)
-		define("LazyImages", [], factory);
-	else if(typeof exports === 'object')
-		exports["LazyImages"] = factory();
-	else
-		root["LazyImages"] = factory();
-})(window, function() {
-return /******/ (function(modules) { // webpackBootstrap
+/******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -76,7 +66,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -84,33 +74,63 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-
-// CONCATENATED MODULE: ./includes/defaults.js
 /**
  * Create object of default settings that can be overrriden on plugin init.
  */
-/* harmony default export */ var defaults = ({
+/* harmony default export */ __webpack_exports__["a"] = ({
     selector: 'data-lazy',
     classes: {
         loaded: 'is-loaded'
     }
 });
 
-// CONCATENATED MODULE: ./lazyImages.js
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1, eval)("this");
+} catch (e) {
+	// This works if the window reference is available
+	if (typeof window === "object") g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var _includes_defaults_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
 
 
 /**
  * Define lazyImages class.
  */
-class lazyImages_lazyImages {
+class lazyImages {
 
     /**
      * Constructor -- assign selector and grab imaages
      * @param {string} selector - Selector string for lazy images
      */
     constructor (selector) {
-        this.selector = !selector ? selector : defaults.selector;
+        this.selector = selector ? selector : _includes_defaults_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].selector;
         this.images = document.querySelectorAll(`[${this.selector}]`);
     }
 
@@ -146,8 +166,8 @@ class lazyImages_lazyImages {
         // On image load, remove lazy attribute and add
         // css class since image has been loaded
         tempImage.onload = function () {
-            image.removeAttribute('data-lazy', '');
-            image.classList.add(defaults.classes.loaded);
+            image.removeAttribute(this.selector, '');
+            image.classList.add(_includes_defaults_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].classes.loaded);
         };
 
         // Assign source and initialize image load event
@@ -206,13 +226,11 @@ class lazyImages_lazyImages {
             });
         }
     }
-
 }
 
-let lazyImages_lazy = new lazyImages_lazyImages('data-lazy');
-lazyImages_lazy.loadImages();
+global.lazyImages = lazyImages;
 
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(1)))
 
 /***/ })
 /******/ ]);
-});

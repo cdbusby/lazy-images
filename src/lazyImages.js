@@ -10,7 +10,7 @@ class lazyImages {
      * @param {string} selector - Selector string for lazy images
      */
     constructor (selector) {
-        this.selector = !selector ? selector : defaults.selector;
+        this.selector = selector ? selector : defaults.selector;
         this.images = document.querySelectorAll(`[${this.selector}]`);
     }
 
@@ -46,7 +46,7 @@ class lazyImages {
         // On image load, remove lazy attribute and add
         // css class since image has been loaded
         tempImage.onload = function () {
-            image.removeAttribute('data-lazy', '');
+            image.removeAttribute(this.selector, '');
             image.classList.add(defaults.classes.loaded);
         };
 
@@ -106,8 +106,6 @@ class lazyImages {
             });
         }
     }
-
 }
 
-let lazy = new lazyImages('data-lazy');
-lazy.loadImages();
+global.lazyImages = lazyImages;

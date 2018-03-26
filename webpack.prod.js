@@ -16,10 +16,7 @@ module.exports = {
 
     output: {
         path: `${__dirname}/dist/`,
-        filename: '[name].js',
-        library: 'LazyImages',
-        libraryTarget: 'umd',
-        umdNamedDefine: true
+        filename: '[name].js'
     },
 
     optimization: {
