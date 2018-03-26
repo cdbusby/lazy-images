@@ -6,6 +6,10 @@
         "commonjs": true
     },
     "extends": "eslint:recommended",
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module"
+    },
     "rules": {
 
         "no-cond-assign": [ "error", "except-parens" ],
@@ -30,7 +34,7 @@
 
         "array-bracket-spacing": [ "error", "always" ],
         "block-spacing": [ "error", "always" ],
-        "brace-style": [ "error", "allman", { "allowSingleLine": true } ],
+        "brace-style": [ "error", "1tbs", { "allowSingleLine": true } ],
         "camelcase": "error",
         "comma-dangle": [ "error", "never" ],
         "comma-style": [ "error", "last" ],
@@ -50,7 +54,7 @@
         "no-trailing-spaces": [ "error", { "skipBlankLines": true, "ignoreComments": true } ],
         "no-underscore-dangle": "off",
         "no-whitespace-before-property": "error",
-        "object-curly-newline": [ "error", { "multiline": true, "minProperties": 0 } ],
+        "object-curly-newline": [ "error", "always" ],
         "one-var-declaration-per-line": [ "error", "initializations" ],
         "quote-props": [ "error", "as-needed" ],
         "quotes": [ "error", "single" ],

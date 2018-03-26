@@ -81,24 +81,46 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-const defaults = {
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+
+// CONCATENATED MODULE: ./includes/defaults.js
+/**
+ * Create object of default settings that can be overrriden on plugin init.
+ */
+/* harmony default export */ var defaults = ({
     selector: 'data-lazy',
-    classes: { loaded: 'is-loaded' }
-};
+    classes: {
+        loaded: 'is-loaded'
+    }
+});
 
-class lazyImages
-{
+// CONCATENATED MODULE: ./lazyImages.js
 
-    constructor (selector)
-    {
+
+/**
+ * Define lazyImages class.
+ */
+class lazyImages_lazyImages {
+
+    /**
+     * Constructor -- assign selector and grab imaages
+     * @param {string} selector - Selector string for lazy images
+     */
+    constructor (selector) {
         this.selector = !selector ? selector : defaults.selector;
         this.images = document.querySelectorAll(`[${this.selector}]`);
     }
 
-    isInViewport (el)
-    {
+    /**
+     * Check to see if HTML element is inside viewport
+     * @param {Object} el - HTML element
+     * @return {boolean} True if element is visible
+     */
+    isInViewport (el) {
+        // Get bounding attributes of element
         var bounding = el.getBoundingClientRect();
 
         return (
@@ -109,47 +131,77 @@ class lazyImages
         );
     }
 
-    loadImage (image)
-    {
+    /**
+     * Load a temporary image to simulate the loading effect
+     * @param {Object} image - Image object
+     */
+    simulateLoading (image) {
+        // Let the browser decide what source to load
+        // and capture it as our temporary image source
+        var currentSource = image.currentSrc;
+
+        // Create new empty image object
+        var tempImage = new Image();
+
+        // On image load, remove lazy attribute and add
+        // css class since image has been loaded
+        tempImage.onload = function () {
+            image.removeAttribute('data-lazy', '');
+            image.classList.add(defaults.classes.loaded);
+        };
+
+        // Assign source and initialize image load event
+        tempImage.src = currentSource;
+    }
+
+    /**
+     * Load image by turning data attributes into real attributes
+     * @param {Object} image - Image element
+     */
+    loadImage (image) {
+        // Assing data attribute values to variables
         var src = image.getAttribute('data-src');
         var srcset = image.getAttribute('data-srcset');
 
-        if (this.isInViewport(image))
-        {
-            image.src = src;
-            image.removeAttribute('data-src', '');
+        // Check to see if the image is inside the viewport
+        // and only load the image if true
+        if (this.isInViewport(image)) {
+            // Create a promise and assign data-src and data-srcset
+            // to real values if they exist
+            var loadSrcs = new Promise(
+                function (resolve, reject) {
+                    // Assign src and remove data attribute
+                    image.src = src;
+                    image.removeAttribute('data-src', '');
 
-            if (srcset)
-            {
-                image.srcset = srcset;
-                image.removeAttribute('data-srcset', '');
-            }
+                    // If image has a srcset defined
+                    if (srcset) {
+                        // Assign srcset and remove data attribute
+                        image.srcset = srcset;
+                        image.removeAttribute('data-srcset', '');
+                    }
 
-            setTimeout(function ()
-            {
-                var currentSource = image.currentSrc;
+                    // Resolve or reject the promise if src/srcset
+                    // are now defined
+                    image.src || image.srcset ? resolve() : reject('Image source could not be loaded.');
+                });
 
-                var tempImage = new Image();
-                tempImage.onload = function ()
-                {
-                    image.removeAttribute('data-lazy', '');
-
-                    setTimeout(function ()
-                    {
-                        image.classList.add(defaults.classes.loaded);
-                    });
-                };
-                tempImage.src = currentSource;
+            // Simulate loading of image or log error ro console
+            // TODO: Remove console log
+            loadSrcs.then(() => {
+                this.simulateLoading(image);
+            }, function (reason) {
+                console.log(reason);
             });
         }
     }
 
-    loadImages ()
-    {
-        if (this.images.length)
-        {
-            this.images.forEach((image) =>
-            {
+    /**
+     * Loop through array of targetted images and load
+     */
+    loadImages () {
+        if (this.images.length) {
+            this.images.forEach((image) => {
                 this.loadImage(image);
             });
         }
@@ -157,8 +209,8 @@ class lazyImages
 
 }
 
-let lazy = new lazyImages('data-lazy');
-lazy.loadImages();
+let lazyImages_lazy = new lazyImages_lazyImages('data-lazy');
+lazyImages_lazy.loadImages();
 
 
 /***/ })
