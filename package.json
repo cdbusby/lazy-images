@@ -1,6 +1,6 @@
 {
   "name": "cb-lazy-images",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Super simple vanilla JS lazy loading of images, including srcset",
   "main": "./src/lazy-images.js",
   "scripts": {
