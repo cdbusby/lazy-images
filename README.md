@@ -15,10 +15,8 @@ Add the lazyImages script to your page
 Init the lazyImages class and run the loadImages function
 
 ```javascript
-(function() {
-    var lazy = new lazyImages();
-    lazy.loadImages();
-})
+var lazy = new lazyImages();
+lazy.loadImages();
 ```
 
 Add the lazy and src/srcset data attributes to images, and add the same image in a noscript tag for users without javascript
@@ -55,3 +53,21 @@ Eslint check and fix
 $ npm run lint
 $ npm run lintfix
 ```
+## Changelog
+
+### 0.2.0
+
+* Fixing issue with ES6 transpiling and proper exporting -- no more global var.
+* Change package name for npm.
+* Updating readme with new install instructions.
+* Switching to using a global variable for export.
+* Update README with link to TravisCI.
+* Splitting source into modules, removing setTimeout() in favour of promises, commenting code, adding to readme.
+* Rename webpack production config file.
+* Adding build status to readme.
+* Adding eslint.
+* Adding .travis.yml for CI.
+
+### 0.1.0
+
+* Initial version
