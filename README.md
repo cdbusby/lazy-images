@@ -56,6 +56,11 @@ $ npm run lintfix
 
 ## Changelog
 
+### 0.3.2
+
+* e49f765 Change viewport check to only need the top left of the image.
+* d4df7d5 Fix changelog format.
+
 ### 0.3.1
 
 * 9ff8493 Fix capitalization of source file.
