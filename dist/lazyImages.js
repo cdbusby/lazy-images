@@ -156,6 +156,8 @@ var lazyImages = function () {
     }, {
         key: 'simulateLoading',
         value: function simulateLoading(image) {
+            var _this = this;
+
             // Let the browser decide what source to load
             // and capture it as our temporary image source
             var currentSource = image.currentSrc;
@@ -166,7 +168,7 @@ var lazyImages = function () {
             // On image load, remove lazy attribute and add
             // css class since image has been loaded
             tempImage.onload = function () {
-                image.removeAttribute(this.selector);
+                image.removeAttribute(_this.selector);
                 image.classList.add(_defaults2.default.classes.loaded);
             };
 
@@ -182,7 +184,7 @@ var lazyImages = function () {
     }, {
         key: 'loadImage',
         value: function loadImage(image) {
-            var _this = this;
+            var _this2 = this;
 
             // Assing data attribute values to variables
             var src = image.getAttribute('data-src');
@@ -213,7 +215,7 @@ var lazyImages = function () {
                 // Simulate loading of image or log error ro console
                 // TODO: Remove console log
                 loadSrcs.then(function () {
-                    _this.simulateLoading(image);
+                    _this2.simulateLoading(image);
                 }, function (reason) {
                     console.log(reason);
                 });
@@ -227,11 +229,11 @@ var lazyImages = function () {
     }, {
         key: 'loadImages',
         value: function loadImages() {
-            var _this2 = this;
+            var _this3 = this;
 
             if (this.images.length) {
                 this.images.forEach(function (image) {
-                    _this2.loadImage(image);
+                    _this3.loadImage(image);
                 });
             }
         }
