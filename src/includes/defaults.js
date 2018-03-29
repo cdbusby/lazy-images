@@ -3,7 +3,7 @@
  */
 export default {
     selector: 'data-lazy',
-    classes: {
-        loaded: 'is-loaded'
+    attributes: {
+        loaded: 'data-lazy-loaded'
     }
 };

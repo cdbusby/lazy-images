@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["lazyImages"] = factory();
+		exports["LazyImages"] = factory();
 	else
-		root["lazyImages"] = factory();
+		root["LazyImages"] = factory();
 })(window, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -94,8 +94,8 @@ Object.defineProperty(exports, "__esModule", {
  */
 exports.default = {
     selector: 'data-lazy',
-    classes: {
-        loaded: 'is-loaded'
+    attributes: {
+        loaded: 'data-lazy-loaded'
     }
 };
 
@@ -119,14 +119,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 /**
  * Define lazyImages class.
  */
-var lazyImages = function () {
+var LazyImages = function () {
 
     /**
      * Constructor -- assign selector and grab imaages
      * @param {string} selector - Selector string for lazy images
      */
-    function lazyImages(selector) {
-        _classCallCheck(this, lazyImages);
+    function LazyImages(selector) {
+        _classCallCheck(this, LazyImages);
 
         this.selector = selector ? selector : _defaults2.default.selector;
         this.images = document.querySelectorAll('[' + this.selector + ']');
@@ -139,7 +139,7 @@ var lazyImages = function () {
      */
 
 
-    _createClass(lazyImages, [{
+    _createClass(LazyImages, [{
         key: 'isInViewport',
         value: function isInViewport(el) {
             // Get bounding attributes of element
@@ -158,9 +158,9 @@ var lazyImages = function () {
         value: function simulateLoading(image) {
             var _this = this;
 
-            // Let the browser decide what source to load
+            // Let the browser decide what source to load (if applicable)
             // and capture it as our temporary image source
-            var currentSource = image.currentSrc;
+            var currentSource = image.currentSrc ? image.currentSrc : image.src;
 
             // Create new empty image object
             var tempImage = new Image();
@@ -169,7 +169,16 @@ var lazyImages = function () {
             // css class since image has been loaded
             tempImage.onload = function () {
                 image.removeAttribute(_this.selector);
-                image.classList.add(_defaults2.default.classes.loaded);
+
+                // Remove relevant data attributes
+                if (image.getAttribute('data-src')) {
+                    image.removeAttribute('data-src');
+                }
+                if (image.getAttribute('data-srcset')) {
+                    image.removeAttribute('data-srcset');
+                }
+
+                image.setAttribute(_defaults2.default.attributes.loaded, 'true');
             };
 
             // Assign source and initialize image load event
@@ -196,15 +205,14 @@ var lazyImages = function () {
                 // Create a promise and assign data-src and data-srcset
                 // to real values if they exist
                 var loadSrcs = new Promise(function (resolve, reject) {
-                    // Assign src and remove data attribute
-                    image.src = src;
-                    image.removeAttribute('data-src');
+                    // Assign src if defined
+                    if (src) {
+                        image.src = src;
+                    }
 
-                    // If image has a srcset defined
+                    // Assign srcset if defined
                     if (srcset) {
-                        // Assign srcset and remove data attribute
                         image.srcset = srcset;
-                        image.removeAttribute('data-srcset');
                     }
 
                     // Resolve or reject the promise if src/srcset
@@ -239,10 +247,10 @@ var lazyImages = function () {
         }
     }]);
 
-    return lazyImages;
+    return LazyImages;
 }();
 
-module.exports = lazyImages;
+module.exports = LazyImages;
 
 /***/ })
 /******/ ]);

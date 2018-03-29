@@ -3,7 +3,7 @@ import defaults from './includes/defaults.js';
 /**
  * Define lazyImages class.
  */
-class lazyImages {
+class LazyImages {
 
     /**
      * Constructor -- assign selector and grab imaages
@@ -36,9 +36,9 @@ class lazyImages {
      * @param {Object} image - Image object
      */
     simulateLoading (image) {
-        // Let the browser decide what source to load
+        // Let the browser decide what source to load (if applicable)
         // and capture it as our temporary image source
-        var currentSource = image.currentSrc;
+        var currentSource = image.currentSrc ? image.currentSrc : image.src;
 
         // Create new empty image object
         var tempImage = new Image();
@@ -47,7 +47,16 @@ class lazyImages {
         // css class since image has been loaded
         tempImage.onload = () => {
             image.removeAttribute(this.selector);
-            image.classList.add(defaults.classes.loaded);
+
+            // Remove relevant data attributes
+            if (image.getAttribute('data-src')) {
+                image.removeAttribute('data-src');
+            }
+            if (image.getAttribute('data-srcset')) {
+                image.removeAttribute('data-srcset');
+            }
+
+            image.setAttribute(defaults.attributes.loaded, 'true');
         };
 
         // Assign source and initialize image load event
@@ -70,15 +79,14 @@ class lazyImages {
             // to real values if they exist
             var loadSrcs = new Promise(
                 function (resolve, reject) {
-                    // Assign src and remove data attribute
-                    image.src = src;
-                    image.removeAttribute('data-src');
+                    // Assign src if defined
+                    if (src) {
+                        image.src = src;
+                    }
 
-                    // If image has a srcset defined
+                    // Assign srcset if defined
                     if (srcset) {
-                        // Assign srcset and remove data attribute
                         image.srcset = srcset;
-                        image.removeAttribute('data-srcset');
                     }
 
                     // Resolve or reject the promise if src/srcset
@@ -108,4 +116,4 @@ class lazyImages {
     }
 }
 
-module.exports = lazyImages;
+module.exports = LazyImages;
