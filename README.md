@@ -53,21 +53,32 @@ Eslint check and fix
 $ npm run lint
 $ npm run lintfix
 ```
+
 ## Changelog
+
+### 0.2.2
+
+* f5ae6d9 Build dist files after 0.2.1 fixes.
+
+### 0.2.1
+
+* 490d194 Fix assignment of selector and removal of data attributes.
+* 490d194 Updating readme with changelog.
 
 ### 0.2.0
 
-* Fixing issue with ES6 transpiling and proper exporting -- no more global var.
-* Change package name for npm.
-* Updating readme with new install instructions.
-* Switching to using a global variable for export.
-* Update README with link to TravisCI.
-* Splitting source into modules, removing setTimeout() in favour of promises, commenting code, adding to readme.
-* Rename webpack production config file.
-* Adding build status to readme.
-* Adding eslint.
-* Adding .travis.yml for CI.
+* 75e065e Fixing issue with ES6 transpiling and proper exporting -- no more global var.
+* 262a8a4 Change package name for npm.
+* 93f2233 Updating readme with new install instructions.
+* 1bccf2c Switching to using a global variable for export.
+* b854b22 Update README with link to TravisCI.
+* d468267 Splitting source into modules, removing setTimeout() in favour of promises, commenting code, adding to readme.
+* 41ff8f1 Rename webpack production config file.
+* 709e8b5 Adding build status to readme.
+* a37378f Adding eslint.
+* e0f505c Adding .travis.yml for CI.
 
 ### 0.1.0
 
-* Initial version
+* b48af46 Adding project files and initial plugin code.
+* bdcfc26 Initial commit
