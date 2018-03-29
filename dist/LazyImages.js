@@ -145,7 +145,8 @@ var LazyImages = function () {
             // Get bounding attributes of element
             var bounding = el.getBoundingClientRect();
 
-            return bounding.top >= 0 && bounding.left >= 0 && bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) && bounding.right <= (window.innerWidth || document.documentElement.clientWidth);
+            // Return true as long as the top left of the image is within the viewport
+            return bounding.top >= 0 && bounding.left >= 0 && bounding.top <= (window.innerHeight || document.documentElement.clientHeight);
         }
 
         /**
