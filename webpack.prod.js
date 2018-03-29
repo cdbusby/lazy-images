@@ -10,14 +10,14 @@ module.exports = {
     context: `${__dirname}/src/`,
 
     entry: {
-        lazyImages: './lazyImages.js',
-        'lazyImages.min': './lazyImages.js'
+        LazyImages: './LazyImages.js',
+        'LazyImages.min': './LazyImages.js'
     },
 
     output: {
         path: `${__dirname}/dist/`,
         filename: '[name].js',
-        library: 'lazyImages',
+        library: 'LazyImages',
         libraryTarget: 'umd'
     },
 

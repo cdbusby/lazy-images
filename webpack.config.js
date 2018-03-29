@@ -10,7 +10,7 @@ module.exports = {
     cache: true,
 
     entry: {
-        lazyImages: './lazyImages.js'
+        LazyImages: './LazyImages.js'
     },
 
     output: {
@@ -19,7 +19,7 @@ module.exports = {
         sourceMapFilename: '[file].map',
         devtoolModuleFilenameTemplate: 'webpack:///[resource-path]', // string
         devtoolFallbackModuleFilenameTemplate: 'webpack:///[resource-path]?[hash]', // string
-        library: 'lazyImages',
+        library: 'LazyImages',
         libraryTarget: 'umd',
     },
 
