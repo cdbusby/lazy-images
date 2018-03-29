@@ -9,13 +9,13 @@ Super simple vanilla JS lazy loading of images, including srcset.
 Add the lazyImages script to your page
 
 ```html
-<script src="path/to/lazyImages.min.js" type="text/javascript"></script>
+<script src="path/to/LazyImages.min.js" type="text/javascript"></script>
 ```
 
 Init the lazyImages class and run the loadImages function
 
 ```javascript
-var lazy = new lazyImages();
+var lazy = new LazyImages();
 lazy.loadImages();
 ```
 
