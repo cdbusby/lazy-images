@@ -56,6 +56,11 @@ $ npm run lintfix
 
 ## Changelog
 
+### 0.3.1
+
+9ff8493 Fix capitalization of source file.
+6d71677 Update changelog.
+
 ### 0.3.0
 
 * 63bad89 Fix issue with src being unset, moved from complete class to data attribute, capitalize class.
