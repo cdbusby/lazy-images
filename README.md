@@ -56,6 +56,13 @@ $ npm run lintfix
 
 ## Changelog
 
+### 0.3.0
+
+* 63bad89 Fix issue with src being unset, moved from complete class to data attribute, capitalize class.
+* 17a35b4 Add dist to eslintignore and add new capitalization to readme.
+* 9213623 Updating webpack configs with new class capitalization.
+* 9bf1f77 Updating changelog.
+
 ### 0.2.2
 
 * f5ae6d9 Build dist files after 0.2.1 fixes.
