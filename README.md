@@ -58,8 +58,8 @@ $ npm run lintfix
 
 ### 0.3.1
 
-9ff8493 Fix capitalization of source file.
-6d71677 Update changelog.
+* 9ff8493 Fix capitalization of source file.
+* 6d71677 Update changelog.
 
 ### 0.3.0
 
