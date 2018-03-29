@@ -19,11 +19,24 @@ module.exports = {
         sourceMapFilename: '[file].map',
         devtoolModuleFilenameTemplate: 'webpack:///[resource-path]', // string
         devtoolFallbackModuleFilenameTemplate: 'webpack:///[resource-path]?[hash]', // string
-        umdNamedDefine: true
+        library: 'lazyImages',
+        libraryTarget: 'umd',
     },
 
     resolve: {
         modules: ["node_modules"]
+    },
+
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader"
+                }
+            }
+        ]
     },
 
     plugins: [

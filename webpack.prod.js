@@ -16,7 +16,21 @@ module.exports = {
 
     output: {
         path: `${__dirname}/dist/`,
-        filename: '[name].js'
+        filename: '[name].js',
+        library: 'lazyImages',
+        libraryTarget: 'umd'
+    },
+
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader"
+                }
+            }
+        ]
     },
 
     optimization: {

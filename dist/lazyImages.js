@@ -1,4 +1,14 @@
-/******/ (function(modules) { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else if(typeof exports === 'object')
+		exports["lazyImages"] = factory();
+	else
+		root["lazyImages"] = factory();
+})(window, function() {
+return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -66,72 +76,60 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 /**
  * Create object of default settings that can be overrriden on plugin init.
  */
-/* harmony default export */ __webpack_exports__["a"] = ({
+exports.default = {
     selector: 'data-lazy',
     classes: {
         loaded: 'is-loaded'
     }
-});
-
+};
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1, eval)("this");
-} catch (e) {
-	// This works if the window reference is available
-	if (typeof window === "object") g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-/* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var _includes_defaults_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
 
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _defaults = __webpack_require__(0);
+
+var _defaults2 = _interopRequireDefault(_defaults);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 /**
  * Define lazyImages class.
  */
-class lazyImages {
+var lazyImages = function () {
 
     /**
      * Constructor -- assign selector and grab imaages
      * @param {string} selector - Selector string for lazy images
      */
-    constructor (selector) {
-        this.selector = selector ? selector : _includes_defaults_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].selector;
-        this.images = document.querySelectorAll(`[${this.selector}]`);
+    function lazyImages(selector) {
+        _classCallCheck(this, lazyImages);
+
+        this.selector = selector ? selector : _defaults2.default.selector;
+        this.images = document.querySelectorAll('[' + this.selector + ']');
     }
 
     /**
@@ -139,57 +137,63 @@ class lazyImages {
      * @param {Object} el - HTML element
      * @return {boolean} True if element is visible
      */
-    isInViewport (el) {
-        // Get bounding attributes of element
-        var bounding = el.getBoundingClientRect();
 
-        return (
-            bounding.top >= 0 &&
-            bounding.left >= 0 &&
-            bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-            bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
-        );
-    }
 
-    /**
-     * Load a temporary image to simulate the loading effect
-     * @param {Object} image - Image object
-     */
-    simulateLoading (image) {
-        // Let the browser decide what source to load
-        // and capture it as our temporary image source
-        var currentSource = image.currentSrc;
+    _createClass(lazyImages, [{
+        key: 'isInViewport',
+        value: function isInViewport(el) {
+            // Get bounding attributes of element
+            var bounding = el.getBoundingClientRect();
 
-        // Create new empty image object
-        var tempImage = new Image();
+            return bounding.top >= 0 && bounding.left >= 0 && bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) && bounding.right <= (window.innerWidth || document.documentElement.clientWidth);
+        }
 
-        // On image load, remove lazy attribute and add
-        // css class since image has been loaded
-        tempImage.onload = function () {
-            image.removeAttribute(this.selector, '');
-            image.classList.add(_includes_defaults_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].classes.loaded);
-        };
+        /**
+         * Load a temporary image to simulate the loading effect
+         * @param {Object} image - Image object
+         */
 
-        // Assign source and initialize image load event
-        tempImage.src = currentSource;
-    }
+    }, {
+        key: 'simulateLoading',
+        value: function simulateLoading(image) {
+            // Let the browser decide what source to load
+            // and capture it as our temporary image source
+            var currentSource = image.currentSrc;
 
-    /**
-     * Load image by turning data attributes into real attributes
-     * @param {Object} image - Image element
-     */
-    loadImage (image) {
-        // Assing data attribute values to variables
-        var src = image.getAttribute('data-src');
-        var srcset = image.getAttribute('data-srcset');
+            // Create new empty image object
+            var tempImage = new Image();
 
-        // Check to see if the image is inside the viewport
-        // and only load the image if true
-        if (this.isInViewport(image)) {
-            // Create a promise and assign data-src and data-srcset
-            // to real values if they exist
-            var loadSrcs = new Promise(
-                function (resolve, reject) {
+            // On image load, remove lazy attribute and add
+            // css class since image has been loaded
+            tempImage.onload = function () {
+                image.removeAttribute(this.selector, '');
+                image.classList.add(_defaults2.default.classes.loaded);
+            };
+
+            // Assign source and initialize image load event
+            tempImage.src = currentSource;
+        }
+
+        /**
+         * Load image by turning data attributes into real attributes
+         * @param {Object} image - Image element
+         */
+
+    }, {
+        key: 'loadImage',
+        value: function loadImage(image) {
+            var _this = this;
+
+            // Assing data attribute values to variables
+            var src = image.getAttribute('data-src');
+            var srcset = image.getAttribute('data-srcset');
+
+            // Check to see if the image is inside the viewport
+            // and only load the image if true
+            if (this.isInViewport(image)) {
+                // Create a promise and assign data-src and data-srcset
+                // to real values if they exist
+                var loadSrcs = new Promise(function (resolve, reject) {
                     // Assign src and remove data attribute
                     image.src = src;
                     image.removeAttribute('data-src', '');
@@ -206,31 +210,38 @@ class lazyImages {
                     image.src || image.srcset ? resolve() : reject('Image source could not be loaded.');
                 });
 
-            // Simulate loading of image or log error ro console
-            // TODO: Remove console log
-            loadSrcs.then(() => {
-                this.simulateLoading(image);
-            }, function (reason) {
-                console.log(reason);
-            });
+                // Simulate loading of image or log error ro console
+                // TODO: Remove console log
+                loadSrcs.then(function () {
+                    _this.simulateLoading(image);
+                }, function (reason) {
+                    console.log(reason);
+                });
+            }
         }
-    }
 
-    /**
-     * Loop through array of targetted images and load
-     */
-    loadImages () {
-        if (this.images.length) {
-            this.images.forEach((image) => {
-                this.loadImage(image);
-            });
+        /**
+         * Loop through array of targetted images and load
+         */
+
+    }, {
+        key: 'loadImages',
+        value: function loadImages() {
+            var _this2 = this;
+
+            if (this.images.length) {
+                this.images.forEach(function (image) {
+                    _this2.loadImage(image);
+                });
+            }
         }
-    }
-}
+    }]);
 
-global.lazyImages = lazyImages;
+    return lazyImages;
+}();
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(1)))
+module.exports = lazyImages;
 
 /***/ })
 /******/ ]);
+});

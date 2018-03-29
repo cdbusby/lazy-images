@@ -108,4 +108,4 @@ class lazyImages {
     }
 }
 
-global.lazyImages = lazyImages;
+module.exports = lazyImages;
