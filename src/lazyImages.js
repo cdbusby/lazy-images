@@ -45,8 +45,8 @@ class lazyImages {
 
         // On image load, remove lazy attribute and add
         // css class since image has been loaded
-        tempImage.onload = function () {
-            image.removeAttribute(this.selector, '');
+        tempImage.onload = () => {
+            image.removeAttribute(this.selector);
             image.classList.add(defaults.classes.loaded);
         };
 
@@ -72,13 +72,13 @@ class lazyImages {
                 function (resolve, reject) {
                     // Assign src and remove data attribute
                     image.src = src;
-                    image.removeAttribute('data-src', '');
+                    image.removeAttribute('data-src');
 
                     // If image has a srcset defined
                     if (srcset) {
                         // Assign srcset and remove data attribute
                         image.srcset = srcset;
-                        image.removeAttribute('data-srcset', '');
+                        image.removeAttribute('data-srcset');
                     }
 
                     // Resolve or reject the promise if src/srcset
