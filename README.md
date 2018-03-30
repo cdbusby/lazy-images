@@ -2,7 +2,7 @@
 
 Super simple vanilla JS lazy loading of images, including srcset.
 
-[![Build Status](https://travis-ci.org/cdbusby/lazy-images.svg?branch=master)](https://travis-ci.org/cdbusby/lazy-images)
+[![Build Status](https://travis-ci.org/cdbusby/lazy-images.svg?branch=master)](https://travis-ci.org/cdbusby/lazy-images) [![NPM Version](https://img.shields.io/npm/v/cb-lazy-images.svg)](https://www.npmjs.com/package/cb-lazy-images)
 
 ## Installation
 
